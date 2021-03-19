@@ -38,7 +38,7 @@ export default function ShellComp() {
        // const scanHttp = new XMLHttpRequest();
        // let searchParams = {'apikey': apiKey, 'resource': input}
         searchHttp.open("GET", searchUrl);
-        searchHttp.setRequestHeader('Origin': 'https://www.virustotal.com');
+        searchHttp.setRequestHeader('Origin', 'https://www.virustotal.com');
         searchHttp.send();
         searchHttp.onreadystatechange=function(){
                      if(this.readyState===4 && this.status===200){
