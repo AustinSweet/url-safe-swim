@@ -38,7 +38,7 @@ export default function ShellComp() {
        // const scanHttp = new XMLHttpRequest();
         let searchParams = {'apikey': apiKey, 'url': input}
         searchHttp.open("GET", searchUrl);
-        searchHttp.withCredentials = true;
+        searchHttp.setRequestHeader("Origin", 'google.com');
         searchHttp.send(searchParams);
         searchHttp.onreadystatechange=function(){
                      if(this.readyState===4 && this.status===200){
