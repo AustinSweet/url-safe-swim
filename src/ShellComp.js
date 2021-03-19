@@ -32,12 +32,13 @@ export default function ShellComp() {
 
     function virusTotalScanSearch(input) {
         const apiKey = '142513a6f4669a85806410b9d39f46aeb6fac11620dac13c1131fd64320543b1';
-       const searchUrl = 'https://www.virustotal.com/vtapi/v2/url/report?apikey=' + apiKey + '&resource=' + input;
+       const searchUrl = 'https://cors-anywhere.herokuapp.com/https://www.virustotal.com/vtapi/v2/url/report?apikey=' + apiKey + '&resource=' + input;
        // const scanUrl = 'https://www.virustotal.com/vtapi/v2/url/scan';
        const searchHttp = new XMLHttpRequest();
        // const scanHttp = new XMLHttpRequest();
        // let searchParams = {'apikey': apiKey, 'resource': input}
         searchHttp.open("GET", searchUrl);
+        searchHttp.setRequestHeader('Origin': 'https://www.virustotal.com');
         searchHttp.send();
         searchHttp.onreadystatechange=function(){
                      if(this.readyState===4 && this.status===200){
