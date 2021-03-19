@@ -5,7 +5,7 @@ export default function Result({ result }) {
         <>
             <div>
                 <label>
-                { result.source }
+                { result }
                 </label>
             </div>
         </>

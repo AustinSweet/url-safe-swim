@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
-import ResultsShellComp from './ResultsShellComp';
 
 export default function ShellComp() {
-    const [results] = useState([])
+    
+    const [scans, setScans] = useState(null);
     const urlSearch = useRef();
     function searchHandler(evt) {
         const searchTerm = urlSearch.current.value;
         if (searchTerm === '') return;
-        console.log(searchTerm);
         virusTotalScanSearch(searchTerm);
         urlSearch.current.value = null;
     }
@@ -15,39 +14,23 @@ export default function ShellComp() {
     function clearHandler() {
         window.location.reload(true);
     }
- //   searchBtn.addEventListener("click", omdbSearch);
-
-// function omdbSearch() {
-//     const keyUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=5149020a&t=";
-//     const Http = new XMLHttpRequest();
-//     var movieTitle = document.getElementById("movieTitle").value;
-//     var fullRequest = keyUrl.concat(movieTitle);
-//     Http.open("GET", fullRequest);
-//     Http.send();
-//     Http.onreadystatechange=function(){
-//         if(this.readyState==4 && this.status==200){
-//             console.log(Http.responseText)
-//         }
-//     }
 
     function virusTotalScanSearch(input) {
+        let tempArr = [];
         const apiKey = '142513a6f4669a85806410b9d39f46aeb6fac11620dac13c1131fd64320543b1';
        const searchUrl = 'https://cors-anywhere.herokuapp.com/https://www.virustotal.com/vtapi/v2/url/report?apikey=' + apiKey + '&resource=' + input;
-       // const scanUrl = 'https://www.virustotal.com/vtapi/v2/url/scan';
        const searchHttp = new XMLHttpRequest();
-       // const scanHttp = new XMLHttpRequest();
-       // let searchParams = {'apikey': apiKey, 'resource': input}
         searchHttp.open("GET", searchUrl);
         searchHttp.setRequestHeader('Origin', 'https://www.virustotal.com');
         searchHttp.send();
         searchHttp.onreadystatechange=function(){
                      if(this.readyState===4 && this.status===200){
-                         console.log(searchHttp.responseText)
+                         const response = JSON.parse(searchHttp.responseText);
+                         setScans(response.scans);
                      }
     }
+    return tempArr;
 }
-
-
 
     return (
         <>
@@ -57,7 +40,9 @@ export default function ShellComp() {
             <button onClick={clearHandler}>Clear Results</button>
         </div>
         <div>
-            <ResultsShellComp results={results}/>
+            <ul>
+                {this.state.scans.map(s => (<li>{s}</li>))}
+            </ul>
         </div>
         </>
     )
