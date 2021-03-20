@@ -13,12 +13,12 @@ export default function ShellComp() {
         setTimeout(function (){
             resultsHandler();
           }, 3000);
-        urlSearch.current.value = null;
     }
 
     function resultsHandler() {
         var temp = JSON.parse(localStorage.getItem('response'));
         if (temp) {
+        document.getElementById('res-div').innerHTML = '';
         temp = temp.substring(temp.indexOf("scans") + 7);
         temp = temp.replace(/{/g, '');
         temp = temp.replace(/"/g, '');
@@ -33,6 +33,7 @@ export default function ShellComp() {
         }
         var temp2 = JSON.parse(localStorage.getItem('responseBackup'));
         if (temp2) {
+        document.getElementById('res-div').innerHTML = '';
         temp2 = temp2.substring(temp2.indexOf("scans") + 7);
         temp2 = temp2.replace(/{/g, '');
         temp2 = temp2.replace('}}}', '');
@@ -46,6 +47,7 @@ export default function ShellComp() {
     }
 
     function clearHandler() {
+        urlSearch.current.value = null;
         localStorage.clear();
         window.location.reload(true);
     }
