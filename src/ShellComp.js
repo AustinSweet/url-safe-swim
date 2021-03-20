@@ -21,6 +21,9 @@ export default function ShellComp() {
         if (temp) {
         temp = temp.substring(temp.indexOf("scans") + 7);
         temp = temp.replace(/{/g, '');
+        temp = temp.replace(/"/g, '');
+        temp = temp.replace('}}}', '');
+        temp = temp.replace(/detected: false, result:/g, '');
         var tempArr = temp.split('},');
         var alertString = '<p>__________________________________________________</p> <p>Please Clear Results before scanning again</p> <p>__________________________________________________</p>';
         document.getElementById('res-div').innerHTML += '<p><h3>' + alertString + '</h3></p>';
@@ -32,6 +35,9 @@ export default function ShellComp() {
         if (temp2) {
         temp2 = temp2.substring(temp2.indexOf("scans") + 7);
         temp2 = temp2.replace(/{/g, '');
+        temp2 = temp2.replace('}}}', '');
+        temp2 = temp2.replace(/"/g, '');
+        temp2 = temp2.replace(/detected: false, result:/g, '');
         var tempArr2 = temp2.split('},');
         tempArr2.forEach(element => {
             document.getElementById('res-div').innerHTML += '<p>' + element + '</p>';
@@ -47,7 +53,7 @@ export default function ShellComp() {
     function tempAlert(msg,duration)
         {
         var el = document.createElement("div");
-        el.setAttribute("style","position:absolute;top:50%;background-color:white;width:99%;height:60px;font-size:2rem;font-family:'Arial';text-align:center;border-radius:1rem;");
+        el.setAttribute("style","position:absolute;top:60%;background-color:white;width:99%;height:60px;font-size:2rem;font-family:'Arial';text-align:center;border-radius:1rem;");
          el.innerHTML = msg;
         setTimeout(function(){
          el.parentNode.removeChild(el);
@@ -163,6 +169,12 @@ const resultStyle = {
             </div>
         </div>
         <div id='res-div' style={resultStyle}>
+            <p>**NOTE**</p>
+            <p>Due to an sudden API deprecation,</p>
+            <p>you will need a plugin to bypass CORS</p>
+            <p>in order to utilize this service.</p>
+            <p>Currently working on an alternative</p>
+            <p>to resolve this issue.</p>
         </div>
         </>
     )
