@@ -1,0 +1,15 @@
+.wrapper {
+  align-items: center;
+}
+
+.inputs {
+  align-items: center;
+}
+
+.button {
+  background-color: black;
+}
+
+.input {
+  padding-top: 3rem;
+}
