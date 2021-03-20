@@ -10,6 +10,9 @@ export default function ShellComp() {
         if (searchTerm === '') return;
         tempAlert("Scanning...", 3000);
         virusTotalScanSearch(searchTerm);
+        setTimeout(function (){
+            resultsHandler();
+          }, 3000);
         urlSearch.current.value = null;
     }
 
@@ -19,6 +22,8 @@ export default function ShellComp() {
         temp = temp.substring(temp.indexOf("scans") + 7);
         temp = temp.replace(/{/g, '');
         var tempArr = temp.split('},');
+        var alertString = 'Please Clear Results before scanning again';
+        document.getElementById('res-div').innerHTML += '<p><h2>' + alertString + '</h2></p>';
         tempArr.forEach(element => {
             document.getElementById('res-div').innerHTML += '<p>' + element + '</p>';
         });
@@ -42,7 +47,7 @@ export default function ShellComp() {
     function tempAlert(msg,duration)
         {
         var el = document.createElement("div");
-        el.setAttribute("style","position:absolute;top:50%;background-color:white;width:99%;height:60px;font-size:3rem;font-family:'Arial';text-align:center;border-radius:1rem;");
+        el.setAttribute("style","position:absolute;top:50%;background-color:white;width:99%;height:60px;font-size:2rem;font-family:'Arial';text-align:center;border-radius:1rem;");
          el.innerHTML = msg;
         setTimeout(function(){
          el.parentNode.removeChild(el);
@@ -79,7 +84,8 @@ export default function ShellComp() {
 const wrapperStyle = {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "transparent"
 }
 const buttonStyle = {
     color: "white",
@@ -101,6 +107,10 @@ const textBoxStyle = {
     fontSize: "1rem",
     fontFamily: "Arial",
     placeholder: "...."
+}
+
+const inputStyle = {
+    backgroundColor: "transparent"
 }
 
 const titleStyle = {
@@ -143,13 +153,12 @@ const resultStyle = {
         <div style={subtitle}>always test the waters before diving in...</div>
         </div>
         <div className="wrapper" style={wrapperStyle}>
-            <div className="inputs">
+            <div className="inputs" style={inputStyle}>
             <form action="https://docs.google.com/document/d/1B5VK90bYHVKqa14QIO_TQyQIiCrPPKB8GOjSofPne_Y/edit?usp=sharing">
                 <input style={buttonStyle} type="submit" value="Creator's Resume" />
             </form>
             <p><input style={textBoxStyle} ref={urlSearch} type="text" /></p>
             <p><button style={buttonStyle} onClick={searchHandler}>Scan URL</button></p>
-            <p><button style={buttonStyle} onClick={resultsHandler}>View Results</button></p>
             <p><button style={buttonStyle} onClick={clearHandler}>Clear Results</button></p>
             </div>
         </div>
