@@ -22,8 +22,8 @@ export default function ShellComp() {
         temp = temp.substring(temp.indexOf("scans") + 7);
         temp = temp.replace(/{/g, '');
         var tempArr = temp.split('},');
-        var alertString = 'Please Clear Results before scanning again';
-        document.getElementById('res-div').innerHTML += '<p><h2>' + alertString + '</h2></p>';
+        var alertString = '<p>__________________________________________________</p> <p>Please Clear Results before scanning again</p> <p>__________________________________________________</p>';
+        document.getElementById('res-div').innerHTML += '<p><h3>' + alertString + '</h3></p>';
         tempArr.forEach(element => {
             document.getElementById('res-div').innerHTML += '<p>' + element + '</p>';
         });
