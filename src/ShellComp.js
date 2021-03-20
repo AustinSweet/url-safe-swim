@@ -8,6 +8,7 @@ export default function ShellComp() {
     function searchHandler(evt) {
         const searchTerm = urlSearch.current.value;
         if (searchTerm === '') return;
+        localStorage.clear();
         tempAlert("Scanning...", 3000);
         virusTotalScanSearch(searchTerm);
         setTimeout(function (){
@@ -25,8 +26,6 @@ export default function ShellComp() {
         temp = temp.replace('}}}', '');
         temp = temp.replace(/detected: false, result:/g, '');
         var tempArr = temp.split('},');
-        var alertString = '<p>__________________________________________________</p> <p>Please Clear Results before scanning again</p> <p>__________________________________________________</p>';
-        document.getElementById('res-div').innerHTML += '<p><h3>' + alertString + '</h3></p>';
         tempArr.forEach(element => {
             document.getElementById('res-div').innerHTML += '<p>' + element + '</p>';
         });
