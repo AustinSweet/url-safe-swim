@@ -157,7 +157,6 @@ const resultStyle = {
         <>
         <div style={titleFill}>
         <div style={titleStyle}>URL Safe-Swim</div>
-        <div style={subtitle}>always test the waters before diving in...</div>
         </div>
         <div className="wrapper" style={wrapperStyle}>
             <div className="inputs" style={inputStyle}>
