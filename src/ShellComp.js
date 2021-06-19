@@ -130,15 +130,6 @@ const titleStyle = {
     fontSize: "3rem",
 }
 
-const subtitle = {
-    textAlign: "center",
-    fontFamily: "Arial",
-    color: "white",
-    fontSize: "1.5rem",
-    fontStyle: "italic",
-    marginBottom: ".5rem"
-}
-
 const titleFill = {
     backgroundColor: "#000033",
     borderRadius: "1rem",
